@@ -29,7 +29,7 @@ public class BookRepositoryJdbcTests {
     @Autowired
     private JdbcAggregateTemplate jdbcAggregateTemplate;
 
-    //@Test
+    @Test
     void findAllBooks() {
         var book1 = Book.of("1234561235", "Title", "Author", 12.90, "Polarsophia");
         var book2 = Book.of("1234561236", "Another Title", "Author", 12.90, "Polarsophia");
