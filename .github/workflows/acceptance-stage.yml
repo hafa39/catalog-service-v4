@@ -40,7 +40,7 @@ jobs:
       - name: Deliver application to production
         uses: peter-evans/repository-dispatch@v2
         with:
-          token: ${{ secrets.DISPATCH_TOKEN }}
+          token: ${{ secrets.PAT }}
           repository: ${{ env.OWNER }}/${{ env.DEPLOY_REPO }}
           event-type: app_delivery
           client-payload: '{
