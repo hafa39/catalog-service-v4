@@ -4,7 +4,7 @@ on: push
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: hafa39/catalog-service-v4
-  VERSION: latest
+  VERSION: ${{ github.sha }}
 
 jobs:
   build:
