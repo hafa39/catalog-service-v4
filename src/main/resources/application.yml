@@ -19,9 +19,10 @@ spring:
       connection-timeout: 2000 #ms
 
   config:
-    import: "optional:configserver:"
+    import: "" # When using Config Service, add "optional:configserver:"
   cloud:
     config:
+      enabled: false # When using Config Service, set to true
       uri: http://localhost:8888
       request-connect-timeout: 5000 # 5s
       request-read-timeout: 5000 # 5s
@@ -32,11 +33,36 @@ spring:
         max-interval: 2000 # 2s
         multiplier: 1.1
 
+  profiles:
+    active: test-data
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/PolarBookshop
+
 management:
   endpoints:
     web:
       exposure:
-        include: refresh
+        include: configprops, env, flyway, health, heapdump, info, loggers, mappings, prometheus, refresh
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+      probes:
+        enabled: true
+  info:
+    env:
+      enabled: true
+    java:
+      enabled: true
+    os:
+      enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
 
 polar:
   greeting: Welcome to the local book catalog!
